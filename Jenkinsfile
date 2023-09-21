@@ -45,5 +45,11 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+
+        stage("Code/Artifact Build"){
+            steps{
+                sh "mvn clean install"
+            }
+        }
     }
 }
