@@ -51,5 +51,15 @@ pipeline {
                 sh "mvn clean install"
             }
         }
+
+        stage("Docker Build"){
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'b01e7f07-d43a-46ee-a768-f6f5c14ba162', toolName: 'docker') {
+                        sh "docker build -t firstspringbootproject ."
+                    }
+                }
+            }
+        }
     }
 }
