@@ -61,5 +61,16 @@ pipeline {
                 }
             }
         }
+
+        stage("Push To Dockerhub"){
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'b01e7f07-d43a-46ee-a768-f6f5c14ba162', toolName: 'docker') {
+                        sh "docker tag firstspringbootproject dominikkoltai/first-springboot-project:latest"
+                        sh "docker push dominikkoltai/first-springboot-project:latest"
+                    }
+                }
+            }
+        }
     }
 }
